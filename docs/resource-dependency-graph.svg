@@ -1,0 +1,57 @@
+<svg width="680" height="316" viewBox="0 0 680 316" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Resource-level dependency graph for the azuread-oidc-app module</title>
+<desc>Application feeds service principal, application password, and the client-id secret. Time rotating feeds the application password. Service principal feeds role assignments. Application password feeds the client-secret. The allowed-principals secret reads variables directly with no resource dependency.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<style>
+.blue{fill:#eff6ff;stroke:#93c5fd;}
+.purple{fill:#faf5ff;stroke:#d8b4fe;}
+.coral{fill:#fff1f2;stroke:#fda4af;}
+.th{font:600 13px sans-serif;fill:#1e293b;}
+.ts{font:11px sans-serif;fill:#475569;}
+.arr{stroke:#475569;stroke-width:1.5;fill:none;}
+</style>
+
+<rect x="35" y="40" width="190" height="56" rx="8" class="blue"/>
+<text class="th" x="130" y="60" text-anchor="middle">azuread_application</text>
+<text class="ts" x="130" y="78" text-anchor="middle">reads: vars only</text>
+
+<rect x="245" y="40" width="190" height="56" rx="8" class="blue"/>
+<text class="th" x="340" y="60" text-anchor="middle">time_rotating</text>
+<text class="ts" x="340" y="78" text-anchor="middle">reads: vars only</text>
+
+<rect x="455" y="40" width="190" height="56" rx="8" class="coral"/>
+<text class="th" x="550" y="60" text-anchor="middle">kv: allowed-principals</text>
+<text class="ts" x="550" y="78" text-anchor="middle">reads: vars only</text>
+
+<line x1="130" y1="96" x2="130" y2="140" class="arr" marker-end="url(#arrow)"/>
+<line x1="170" y1="96" x2="245" y2="140" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="96" x2="340" y2="140" class="arr" marker-end="url(#arrow)"/>
+<line x1="200" y1="96" x2="455" y2="140" class="arr" marker-end="url(#arrow)"/>
+
+<rect x="35" y="140" width="190" height="56" rx="8" class="purple"/>
+<text class="th" x="130" y="158" text-anchor="middle">service_principal</text>
+<text class="ts" x="130" y="176" text-anchor="middle">needs: application</text>
+
+<rect x="245" y="140" width="190" height="56" rx="8" class="blue"/>
+<text class="th" x="340" y="158" text-anchor="middle">application_password</text>
+<text class="ts" x="340" y="176" text-anchor="middle">needs: app + rotation</text>
+
+<rect x="455" y="140" width="190" height="56" rx="8" class="coral"/>
+<text class="th" x="550" y="158" text-anchor="middle">kv: client-id</text>
+<text class="ts" x="550" y="176" text-anchor="middle">needs: application</text>
+
+<line x1="120" y1="196" x2="180" y2="240" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="196" x2="340" y2="240" class="arr" marker-end="url(#arrow)"/>
+
+<rect x="80" y="240" width="200" height="56" rx="8" class="purple"/>
+<text class="th" x="180" y="258" text-anchor="middle">app_role_assignment</text>
+<text class="ts" x="180" y="276" text-anchor="middle">needs: service_principal</text>
+
+<rect x="320" y="240" width="200" height="56" rx="8" class="coral"/>
+<text class="th" x="420" y="258" text-anchor="middle">kv: client-secret</text>
+<text class="ts" x="420" y="276" text-anchor="middle">needs: app_password</text>
+</svg>

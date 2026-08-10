@@ -1,0 +1,12 @@
+app_display_name       = "app-my-oidc-app"
+redirect_uris          = ["https://my-app.example.com/auth/callback"]
+require_role_to_signin = false
+
+keyvault_id = "/subscriptions/xxxx/resourceGroups/xxxx/providers/Microsoft.KeyVault/vaults/xxxx"
+
+azuread_group_owners = [
+  "00000000-0000-0000-0000-000000000001",
+]
+
+app_admins = "00000000-0000-0000-0000-000000000002"
+app_users  = "00000000-0000-0000-0000-000000000003"
