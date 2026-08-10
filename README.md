@@ -66,7 +66,7 @@ The secrets never go into git or container images →  Key Vault is the only pla
 
 ## How sign-in works
 
-![Authentication and authorization flow](docs/auth-flow.svg)
+![Authentication and authorization flow](docs/auth_flow.svg)
 
 ```
 1. User hits your app → redirected to Entra ID login
