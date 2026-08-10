@@ -207,10 +207,12 @@ Open http://localhost:5000. You'll get redirected to the Microsoft login page. A
 <img width="533" height="640" alt="image" src="https://github.com/user-attachments/assets/55e60d18-16cf-4976-a630-7fb37cdccb35" />
 
 Signed in as Admin:
+
 <img width="575" height="251" alt="image" src="https://github.com/user-attachments/assets/64f272de-d397-4c01-92de-c2b7a75e523f" />
 
 
 Signed in as User:
+
 <img width="603" height="261" alt="image" src="https://github.com/user-attachments/assets/e558b7cc-14d4-4bb5-b7ba-9d6d9af9db0a" />
 
 
