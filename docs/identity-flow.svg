@@ -1,0 +1,42 @@
+<svg width="680" height="336" viewBox="0 0 680 336" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Generic Azure AD identity and role assignment flow</title>
+<desc>An Azure AD application feeds a service principal, which fans out into N role assignments defined by the caller.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="#475569" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<style>
+.box{fill:#eff6ff;stroke:#93c5fd;}
+.box2{fill:#faf5ff;stroke:#d8b4fe;}
+.th{font:600 14px sans-serif;fill:#1e293b;}
+.ts{font:12px sans-serif;fill:#475569;}
+.arr{stroke:#475569;stroke-width:1.5;fill:none;}
+</style>
+
+<rect x="210" y="40" width="260" height="56" rx="8" class="box"/>
+<text class="th" x="340" y="60" text-anchor="middle">azuread_application</text>
+<text class="ts" x="340" y="78" text-anchor="middle">display_name + roles (var.roles)</text>
+
+<line x1="340" y1="96" x2="340" y2="140" class="arr" marker-end="url(#arrow)"/>
+
+<rect x="210" y="140" width="260" height="56" rx="8" class="box"/>
+<text class="th" x="340" y="160" text-anchor="middle">azuread_service_principal</text>
+<text class="ts" x="340" y="178" text-anchor="middle">require_role_to_signin (bool)</text>
+
+<line x1="240" y1="196" x2="140" y2="240" class="arr" marker-end="url(#arrow)"/>
+<line x1="340" y1="196" x2="340" y2="240" class="arr" marker-end="url(#arrow)"/>
+<line x1="440" y1="196" x2="540" y2="240" class="arr" marker-end="url(#arrow)"/>
+
+<rect x="50" y="240" width="180" height="56" rx="8" class="box2"/>
+<text class="th" x="140" y="258" text-anchor="middle">Role assignment 1</text>
+<text class="ts" x="140" y="276" text-anchor="middle">role_assignments[key]</text>
+
+<rect x="250" y="240" width="180" height="56" rx="8" class="box2"/>
+<text class="th" x="340" y="258" text-anchor="middle">Role assignment 2</text>
+<text class="ts" x="340" y="276" text-anchor="middle">role_assignments[key]</text>
+
+<rect x="450" y="240" width="180" height="56" rx="8" class="box2"/>
+<text class="th" x="540" y="258" text-anchor="middle">Role assignment N</text>
+<text class="ts" x="540" y="276" text-anchor="middle">...for as many as you pass</text>
+</svg>

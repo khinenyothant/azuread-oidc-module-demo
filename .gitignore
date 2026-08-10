@@ -1,0 +1,26 @@
+# Local .terraform directories
+**/.terraform/*
+
+# Terraform state files (may contain secrets)
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Real variable files with actual secrets/object IDs — never commit these
+terraform.tfvars
+*.auto.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Lock file — keep this checked in for reproducible providers, this line
+# is here only as a reminder not to accidentally ignore it
+# .terraform.lock.hcl
+
+# CLI config
+.terraformrc
+terraform.rc

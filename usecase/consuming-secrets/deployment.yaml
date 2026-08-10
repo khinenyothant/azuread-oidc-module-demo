@@ -1,0 +1,53 @@
+# Build the image first:
+#   docker build -t <your-registry>/oidc-demo-app:latest ./app
+#   docker push <your-registry>/oidc-demo-app:latest
+#
+# Before applying, create the session secret:
+#   kubectl create secret generic oidc-session \
+#     --from-literal=session-secret=$(openssl rand -hex 32)
+#
+# Works with either fetch-secrets.sh or secret-provider-class.yaml —
+# both produce the same "oidc-app-credentials" Secret.
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-oidc-app
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-oidc-app
+  template:
+    metadata:
+      labels:
+        app: my-oidc-app
+    spec:
+      containers:
+        - name: app
+          image: oidc-demo-app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          env:
+            - name: OIDC_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: oidc-app-credentials
+                  key: client-id
+            - name: OIDC_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oidc-app-credentials
+                  key: client-secret
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: oidc-session
+                  key: session-secret
+            - name: AZURE_TENANT_ID
+              value: "<REPLACE_WITH_YOUR_TENANT_ID>"
+            - name: REDIRECT_URI
+              value: "http://localhost:5000/auth/callback"
+
