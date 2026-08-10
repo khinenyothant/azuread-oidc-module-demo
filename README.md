@@ -1,6 +1,6 @@
 # azuread-oidc-app
 
-This module automates Azure AD app registration — creating the app, service principal, role assignments, and client secret, then publishing the credentials to Key Vault. No more manual Portal clicks or secrets pasted into config files.
+This module automates Azure AD app registration →  creating the app, service principal, role assignments, and client secret, then publishing the credentials to Key Vault. No more manual Portal clicks or secrets pasted into config files.
 
 ---
 
@@ -8,11 +8,11 @@ This module automates Azure AD app registration — creating the app, service pr
 
 You'll need these tools installed:
 
-- Terraform >= 1.5 — https://developer.hashicorp.com/terraform/install
-- Azure CLI — https://learn.microsoft.com/cli/azure/install-azure-cli
-- kubectl — https://kubernetes.io/docs/tasks/tools/
-- Docker — https://docs.docker.com/get-docker/
-- minikube (local testing only) — https://minikube.sigs.k8s.io/docs/start/
+- Terraform >= 1.5 →  https://developer.hashicorp.com/terraform/install
+- Azure CLI →  https://learn.microsoft.com/cli/azure/install-azure-cli
+- kubectl →  https://kubernetes.io/docs/tasks/tools/
+- Docker →  https://docs.docker.com/get-docker/
+- minikube (local testing only) →  https://minikube.sigs.k8s.io/docs/start/
 
 Log in to Azure:
 ```bash
@@ -33,7 +33,7 @@ az role assignment create \
   --assignee $(az ad signed-in-user show --query id -o tsv) \
   --scope $(az keyvault show --name kv-oidc-demo --query id -o tsv)
 
-# AAD groups — one for admins, one for regular users
+# AAD groups →  one for admins, one for regular users
 az ad group create --display-name "demo-admins" --mail-nickname "demo-admins"
 az ad group create --display-name "demo-users"  --mail-nickname "demo-users"
 ```
@@ -60,7 +60,7 @@ After `terraform apply`, you'll have:
 | `<prefix>-client-secret` | The app's client secret |
 | `<prefix>-allowed-principals` | Object IDs of everyone with a role |
 
-The secrets never go into git or container images — Key Vault is the only place they live.
+The secrets never go into git or container images →  Key Vault is the only place they live.
 
 ---
 
@@ -77,7 +77,7 @@ The secrets never go into git or container images — Key Vault is the only plac
 6. Admin sees the admin panel, User sees standard access, no role = denied
 ```
 
-If you set `require_role_to_signin = true`, Entra ID handles step 6 for you — users without a role can't even get a token.
+If you set `require_role_to_signin = true`, Entra ID handles step 6 for you →  users without a role can't even get a token.
 
 ---
 
@@ -137,9 +137,9 @@ Key inputs:
 
 ---
 
-## Usage — step by step
+## Usage →  step by step
 
-### Step 1 — Provision the app in Entra ID
+### Step 1 →  Provision the app in Entra ID
 
 ```bash
 cd usecase/provision
@@ -162,9 +162,9 @@ After apply, verify in the portal:
 
 ---
 
-### Step 2 — Get secrets into the cluster
+### Step 2 →  Get secrets into the cluster
 
-The module only writes to Key Vault — this step reads them back out into a Kubernetes Secret.
+The module only writes to Key Vault →  this step reads them back out into a Kubernetes Secret.
 
 **For local testing (minikube):** run `fetch-secrets.sh`. It calls `az keyvault secret show` and creates the k8s Secret directly. No cluster components needed.
 
@@ -185,7 +185,7 @@ Both paths produce the same Kubernetes Secret (`oidc-app-credentials`) that the 
 
 ---
 
-### Step 3 — Run the demo app
+### Step 3 →  Run the demo app
 
 `usecase/consuming-secrets/flask-app/` is a small Flask app that does the full OIDC login and shows what role the user has.
 
