@@ -204,7 +204,8 @@ kubectl port-forward deploy/my-oidc-app 5000:5000 -n demo
 ```
 
 Open http://localhost:5000. You'll get redirected to the Microsoft login page. After signing in, the app shows your name and role.
-<img width="533" height="640" alt="image" src="https://github.com/user-attachments/assets/55e60d18-16cf-4976-a630-7fb37cdccb35" />
+<img width="531" height="639" alt="image" src="https://github.com/user-attachments/assets/10cb5897-6a38-41f2-b663-d5903e2a2abe" />
+
 
 Signed in as Admin:
 
