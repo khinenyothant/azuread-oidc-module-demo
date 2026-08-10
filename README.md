@@ -151,7 +151,7 @@ terraform plan -out=tfplan
 terraform apply tfplan
 ```
 
-After apply
+After apply, verify in the portal:
 
 <img width="861" height="426" alt="image" src="https://github.com/user-attachments/assets/76328192-1b1c-4f2e-90fa-70f0f120ef66" />
 <img width="1102" height="629" alt="image" src="https://github.com/user-attachments/assets/aa426645-06d7-48ea-a05c-41dbf9f977d3" />
@@ -206,11 +206,11 @@ kubectl port-forward deploy/my-oidc-app 5000:5000 -n demo
 Open http://localhost:5000. You'll get redirected to the Microsoft login page. After signing in, the app shows your name and role.
 <img width="533" height="640" alt="image" src="https://github.com/user-attachments/assets/55e60d18-16cf-4976-a630-7fb37cdccb35" />
 
-Sign-in with Admin Role User
+Signed in as Admin:
 <img width="575" height="251" alt="image" src="https://github.com/user-attachments/assets/64f272de-d397-4c01-92de-c2b7a75e523f" />
 
 
-Sign-in with User Role User
+Signed in as User:
 <img width="603" height="261" alt="image" src="https://github.com/user-attachments/assets/e558b7cc-14d4-4bb5-b7ba-9d6d9af9db0a" />
 
 
