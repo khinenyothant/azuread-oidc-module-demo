@@ -151,13 +151,14 @@ terraform plan -out=tfplan
 terraform apply tfplan
 ```
 
-After apply, check Key Vault:
-```bash
-az keyvault secret list --vault-name kv-oidc-demo --query "[].name" -o tsv
-# app-oidc-demo-client-id
-# app-oidc-demo-client-secret
-# app-oidc-demo-allowed-principals
-```
+After apply
+
+<img width="861" height="426" alt="image" src="https://github.com/user-attachments/assets/76328192-1b1c-4f2e-90fa-70f0f120ef66" />
+<img width="1102" height="629" alt="image" src="https://github.com/user-attachments/assets/aa426645-06d7-48ea-a05c-41dbf9f977d3" />
+<img width="1250" height="373" alt="image" src="https://github.com/user-attachments/assets/0de51f20-ccf2-43c2-8e58-b81f60c9879a" />
+<img width="1553" height="426" alt="image" src="https://github.com/user-attachments/assets/390c4862-a153-44f9-a20b-802ee29adbdc" />
+<img width="1391" height="284" alt="image" src="https://github.com/user-attachments/assets/5847debf-d689-49c7-b058-60f23f635b0b" />
+<img width="1109" height="112" alt="image" src="https://github.com/user-attachments/assets/c9da1834-2058-4c28-921c-b3eea9c6e84f" />
 
 ---
 
@@ -176,6 +177,7 @@ cd usecase/consuming-secrets
 kubectl get secret oidc-app-credentials -n demo
 kubectl get secret oidc-app-credentials -n demo -o json | jq -r '.data | map_values(@base64d)'
 ```
+<img width="1197" height="405" alt="image" src="https://github.com/user-attachments/assets/4fb92458-eb07-4a3e-a6c3-c4423ef6d553" />
 
 **For production (AKS):** use `secret-provider-class.yaml` instead. The CSI driver pulls secrets automatically and keeps them in sync when they rotate. Fill in `keyvaultName`, `tenantId`, and `userAssignedIdentityID`, then apply it.
 
@@ -202,3 +204,13 @@ kubectl port-forward deploy/my-oidc-app 5000:5000 -n demo
 ```
 
 Open http://localhost:5000. You'll get redirected to the Microsoft login page. After signing in, the app shows your name and role.
+<img width="533" height="640" alt="image" src="https://github.com/user-attachments/assets/55e60d18-16cf-4976-a630-7fb37cdccb35" />
+
+Sign-in with Admin Role User
+<img width="575" height="251" alt="image" src="https://github.com/user-attachments/assets/64f272de-d397-4c01-92de-c2b7a75e523f" />
+
+
+Sign-in with User Role User
+<img width="603" height="261" alt="image" src="https://github.com/user-attachments/assets/e558b7cc-14d4-4bb5-b7ba-9d6d9af9db0a" />
+
+
