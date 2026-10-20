@@ -66,15 +66,20 @@ The secrets never go into git or container images →  Key Vault is the only pla
 
 ## How sign-in works
 
-![Authentication and authorization flow](docs/auth_flow.svg)
+![Authentication and authorization flow](docs/entra_id_signin_sequence.svg)
 
 ```
-1. User hits your app → redirected to Entra ID login
-2. User logs in → Entra ID returns a JWT token with a "roles" claim
-3. Browser sends the token to your app
-4. App exchanges it with Entra ID using client-id + client-secret (from Key Vault)
-5. App reads the roles claim
-6. Admin sees the admin panel, User sees standard access, no role = denied
+1.  User opens your app
+2.  App redirects the browser to Entra ID login
+3.  User signs in at Entra ID
+4.  Entra ID redirects back with an auth code (not the token)
+5.  Browser hands the auth code to your app
+6.  App asks Key Vault for the client secret
+7.  Key Vault returns the client secret
+8.  App sends code + client-id + client-secret to Entra ID
+9.  Entra ID returns an ID token (JWT) with a "roles" claim
+10. App checks the roles claim
+11. Admin → admin panel, User → standard access, no role → denied
 ```
 
 If you set `require_role_to_signin = true`, Entra ID handles step 6 for you →  users without a role can't even get a token.
